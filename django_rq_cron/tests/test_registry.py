@@ -1,5 +1,3 @@
-import pytest
-
 from django_rq_cron.models import CronJob
 from django_rq_cron.registry import register_cron, extract_name, REGISTERED_CRON_JOBS
 

@@ -1,3 +1,41 @@
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-rq-cron"
+version = "0.1.1"
+description = "A Django app for running cron jobs with django-rq"
+readme = "README.md"
+authors = [
+    {name = "Buttondown", email = "hello@buttondown.email"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Internet :: WWW/HTTP",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "Django>=3.2",
+    "django-rq>=2.5.0",
+    "python-crontab>=2.6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/buttondown/django-rq-cron"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
