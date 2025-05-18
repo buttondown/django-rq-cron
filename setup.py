@@ -7,7 +7,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8'
 
 setup(
     name="django-rq-cron",
-    version="0.1.0",
+    version="0.1.1",
     description="A Django app for running cron jobs with django-rq",
     long_description=long_description,
     long_description_content_type="text/markdown",
