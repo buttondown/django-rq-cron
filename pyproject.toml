@@ -38,4 +38,5 @@ Homepage = "https://github.com/buttondown/django-rq-cron"
 [dependency-groups]
 dev = [
     "pytest>=8.3.5",
+    "pytest-django>=4.5.2",
 ]
