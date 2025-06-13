@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-rq-cron"
-version = "0.1.1"
+version = "0.2.0"
 description = "A Django app for running cron jobs with django-rq"
 readme = "README.md"
 authors = [
@@ -39,4 +39,5 @@ Homepage = "https://github.com/buttondown/django-rq-cron"
 dev = [
     "pytest>=8.3.5",
     "pytest-django>=4.5.2",
+    "ruff>=0.11.13",
 ]

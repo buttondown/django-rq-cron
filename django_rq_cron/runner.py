@@ -4,7 +4,7 @@ from collections.abc import Iterable
 import django_rq
 from django.utils import timezone
 
-from django_rq_cron.models import CronJob, CronJobRun
+from django_rq_cron.models import CronJob, CronJobRun, CronJobStatusTransition
 from django_rq_cron.registry import REGISTERED_CRON_JOBS, RegisteredCronJob
 from django_rq_cron.utils import get_next_scheduled_time
 
@@ -46,6 +46,11 @@ def run_cron(cron_name: str):
             cron_job.latest_status_change = timezone.now()
             cron_job.status = CronJob.Status.FAILING
             cron_job.save()
+            CronJobStatusTransition.objects.create(
+                parent=cron_job,
+                old_value=CronJob.Status.NEW,
+                new_value=CronJob.Status.FAILING,
+            )
         return
 
     end = timezone.now()
@@ -57,8 +62,14 @@ def run_cron(cron_name: str):
     )
     cron_job.latest_run_date = end
     if cron_job.status != CronJob.Status.SUCCEEDING:
+        original_status = cron_job.status
         cron_job.latest_status_change = timezone.now()
         cron_job.status = CronJob.Status.SUCCEEDING
+        CronJobStatusTransition.objects.create(
+            parent=cron_job,
+            old_value=original_status,
+            new_value=CronJob.Status.SUCCEEDING,
+        )
     cron_job.cadence = cron.cadence
     cron_job.description = cron.description
     cron_job.save()

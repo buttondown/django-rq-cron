@@ -14,8 +14,8 @@ class CronJobRunInline(admin.TabularInline):
 
 class CronJobStatusTransitionInline(admin.TabularInline):
     model = CronJobStatusTransition
-    fields = ("creation_date", "old_value", "new_value", "user")
-    readonly_fields = ("creation_date", "old_value", "new_value", "user")
+    fields = ("creation_date", "old_value", "new_value")
+    readonly_fields = ("creation_date", "old_value", "new_value")
     extra = 0
     max_num = 0
 
