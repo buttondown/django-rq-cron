@@ -4,10 +4,12 @@ import django
 from django.conf import settings
 from django.core.management import call_command
 
+
 # Ensure Django is initialized before tests run
 def pytest_configure():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tests.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tests.settings")
     django.setup()
+
 
 @pytest.fixture(scope="session")
 def django_db_setup(django_db_blocker):
@@ -18,10 +20,11 @@ def django_db_setup(django_db_blocker):
             "NAME": ":memory:",
         }
     }
-    
+
     with django_db_blocker.unblock():
         # Create the test database and apply migrations
         call_command("migrate")
+
 
 @pytest.fixture
 def setup_django_db(db):

@@ -82,7 +82,7 @@ class CronJobRun(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     modification_date = models.DateTimeField(auto_now=True)
     completion_date = models.DateTimeField(blank=True, null=True)
-    
+
     cron_job = models.ForeignKey(
         "CronJob",
         null=False,
@@ -112,8 +112,12 @@ class CronJobStatusTransition(models.Model):
         on_delete=models.CASCADE,
         related_name="status_transitions",
     )
-    old_value = models.TextField(max_length=50, choices=CronJob.Status.choices, null=True)
-    new_value = models.TextField(max_length=50, choices=CronJob.Status.choices, null=True)
+    old_value = models.TextField(
+        max_length=50, choices=CronJob.Status.choices, null=True
+    )
+    new_value = models.TextField(
+        max_length=50, choices=CronJob.Status.choices, null=True
+    )
 
     class Meta:
         ordering = ("-creation_date",)

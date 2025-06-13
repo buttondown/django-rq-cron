@@ -6,48 +6,75 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('django_rq_cron', '0001_initial'),
+        ("django_rq_cron", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='cronjobstatustransition',
-            options={'ordering': ('-creation_date',)},
+            name="cronjobstatustransition",
+            options={"ordering": ("-creation_date",)},
         ),
         migrations.RemoveField(
-            model_name='cronjobstatustransition',
-            name='user',
+            model_name="cronjobstatustransition",
+            name="user",
         ),
         migrations.AlterField(
-            model_name='cronjob',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="cronjob",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='cronjobrun',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="cronjobrun",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='cronjobstatustransition',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="cronjobstatustransition",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='cronjobstatustransition',
-            name='new_value',
-            field=models.TextField(choices=[('new', 'New'), ('succeeding', 'Succeeding'), ('failing', 'Failing'), ('deprecated', 'Deprecated')], max_length=50, null=True),
+            model_name="cronjobstatustransition",
+            name="new_value",
+            field=models.TextField(
+                choices=[
+                    ("new", "New"),
+                    ("succeeding", "Succeeding"),
+                    ("failing", "Failing"),
+                    ("deprecated", "Deprecated"),
+                ],
+                max_length=50,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='cronjobstatustransition',
-            name='old_value',
-            field=models.TextField(choices=[('new', 'New'), ('succeeding', 'Succeeding'), ('failing', 'Failing'), ('deprecated', 'Deprecated')], max_length=50, null=True),
+            model_name="cronjobstatustransition",
+            name="old_value",
+            field=models.TextField(
+                choices=[
+                    ("new", "New"),
+                    ("succeeding", "Succeeding"),
+                    ("failing", "Failing"),
+                    ("deprecated", "Deprecated"),
+                ],
+                max_length=50,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='cronjobstatustransition',
-            name='parent',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='status_transitions', to='django_rq_cron.cronjob'),
+            model_name="cronjobstatustransition",
+            name="parent",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="status_transitions",
+                to="django_rq_cron.cronjob",
+            ),
         ),
     ]
